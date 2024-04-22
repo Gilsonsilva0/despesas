@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Orçamento pessoal</title>
+    <title>Consultar Orçamento</title>
 
     <!-- bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -11,8 +11,9 @@
     <link rel="stylesheet" href="style.css">
     <script src="orcamento.js"></script>
 
+
 </head>
-<body>
+<body onload="CarregarDespesa()">
     
     <header>
         <div class="centralizar">
@@ -23,9 +24,8 @@
 
             <div class="nav">
                 <ul>
-                    <li><a href="">Cadastrar</a></li>
-                    <li><a href="consulta.html">Consultar</a></li>
-                    <li><a href="despesa.html"></a>Visão geral</li>
+                    <li><a href="index.html">Cadastrar</a></li>
+                    <li><a href="">Consultar</a></li>
                 </ul>
             </div>
 
@@ -34,7 +34,7 @@
 
     <section class="registrar">
 
-        <h1 class="title">Registro de nova despesa</h1>
+        <h1 class="title">Visão geral de gastos</h1>
 
         <div class="filtro">
 
@@ -102,15 +102,15 @@
                         <option value="20">20</option>
                         <option value="21">21</option>
                         <option value="22">22</option>
-                        <option value="23">23</option>
-                        <option value="24">24</option>
-                        <option value="25">25</option>
-                        <option value="26">26</option>
-                        <option value="27">27</option>
-                        <option value="28">28</option>
-                        <option value="29">29</option>
-                        <option value="30">30</option>
-                        <option value="31">31</option>
+                        <option value="">23</option>
+                        <option value="">24</option>
+                        <option value="">25</option>
+                        <option value="">26</option>
+                        <option value="">27</option>
+                        <option value="">28</option>
+                        <option value="">29</option>
+                        <option value="">30</option>
+                        <option value="">31</option>
                     </select>
                 </div>
     
@@ -140,7 +140,7 @@
                     <input type="number" name="valor" id="valor" placeholder="Valor">
                 </div>
     
-                <div class="button" onclick="cadastrardespesa()">
+                <div class="button" onclick="calculardespesa()">
                     <button><i class="fa-solid fa-square-plus fa-3x" style="color: #1e7ec8;"></i></button>
                 </div>
 
@@ -150,26 +150,59 @@
 
     </section>
 
+    <section class="tabela_consulta">
 
-  <!-- Modal de alerta para sucesso ou erro -->
-  <div class="modal fade" id="gravacao" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="container">
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Tipo</th>
+                        <th>Descrição</th>
+                        <th>Valor</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="body-table">
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        
+    </section>
+
+
+<!-- Modal de alerta para sucesso ou erro -->
+  <div class="modal fade" id="remocao" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <div id="div-title">
-          <h5 class="modal-title" id="modal-title"></h5>
+        <div id="div-title " class="text-danger">
+          <h5 class="modal-title" id="modal-title">Remover despesa</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
+            Tem certeza que deseja remover essa despesa?
         </div>
         <div class="modal-footer">
-          <button id="modal-button" type="button" data-dismiss="modal">Voltar</button>
+          <button id="confirm-button" class="btn btn-success" type="button" data-dismiss="modal">Confirmar</button>
+          <button id="comeback-button" class="btn btn-danger" type="button" data-dismiss="modal">Cancelar</button>
         </div>
       </div>
     </div>
   </div>
 
+  <div id="soma-total">
+
+  </div>
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

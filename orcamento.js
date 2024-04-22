@@ -241,6 +241,46 @@ function pesquisardespesa() {
 }
 
 
+
+function calculardespesa() {
+    
+    let ano = document.getElementById('ano').value;
+    let mes = document.getElementById('mes').value;
+    let dia = document.getElementById('dia').value;
+    let tipo = document.getElementById('tipo').value;
+    let descricao = document.getElementById('descricao').value;
+    let valor = document.getElementById('valor').value;
+
+    let despesa = new Despesa(ano, mes, dia, tipo, descricao, valor);
+
+    // Pesquisar despesas com base nos critérios especificados
+    let despesasFiltradas = bd.pesquisar(despesa);
+
+    // Calcular a soma dos valores das despesas filtradas
+    let somaTotal = despesasFiltradas.reduce((total, d) => total + parseFloat(d.valor), 0);
+
+    // Exibir a soma total na página
+    document.getElementById('soma-total').innerText = "Soma Total: R$ " + somaTotal.toFixed(2);
+
+    // Limpar tabela antes de exibir resultados
+    let listaDespesa = document.getElementById('body-table');
+    listaDespesa.innerHTML = '';
+
+    // Exibir resultados na tabela
+    despesasFiltradas.forEach(function(d) {
+        // Insere uma linha para cada elemento do Array
+        let linha = listaDespesa.insertRow();
+
+        // Para cada linha, adiciona-se tantas colunas, que começam com índice 0
+        linha.insertCell(0).innerHTML = d.dia + '/' + d.mes + '/' + d.ano;
+        linha.insertCell(1).innerHTML = d.tipo;
+        linha.insertCell(2).innerHTML = d.descricao;
+        linha.insertCell(3).innerHTML = d.valor;
+    });
+}
+
+
+
     
 
 
