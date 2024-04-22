@@ -93,6 +93,7 @@ button{
 }
 
 
+
 @media  screen and (max-width:1110px) {
 
     header, section{
@@ -113,5 +114,15 @@ button{
         text-align: center;
         margin: 0;
     }
+
+    .container{
+        width: 100%;
+        margin: auto 0;
+
+    }
+    .btn{
+        display: none;
+    }
+    
     
 }

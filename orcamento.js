@@ -200,6 +200,7 @@ function CarregarDespesa(){
                 window.location.reload()
             })
         }
+
         linha.insertCell(4).append(btn)
 
 
