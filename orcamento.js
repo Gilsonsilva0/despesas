@@ -260,7 +260,9 @@ function calculardespesa() {
     let somaTotal = despesasFiltradas.reduce((total, d) => total + parseFloat(d.valor), 0);
 
     // Exibir a soma total na página
-    document.getElementById('soma-total').innerText = "Soma Total: R$ " + somaTotal.toFixed(2);
+    let soma_total = document.getElementById('soma-total')
+    soma_total.innerText = "Soma Total: R$ " + somaTotal.toFixed(2);
+    soma_total.style.display = ""
 
     // Limpar tabela antes de exibir resultados
     let listaDespesa = document.getElementById('body-table');
